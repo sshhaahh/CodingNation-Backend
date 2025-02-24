@@ -1,4 +1,4 @@
-const mongoose=require('mongooose')
+const mongoose=require('mongoose')
 
 
 const userSchema=new mongoose.Schema({
@@ -19,6 +19,10 @@ const userSchema=new mongoose.Schema({
         required:true,
         trim:true,
         
+    },
+    contactNumber:{
+        type:Number,
+        trim:true,
     },
     password:{
         type:String,
