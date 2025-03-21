@@ -33,10 +33,56 @@ exports.auth=async(req,res,next)=>{
 
 
 exports.isAdmin=async(req,res,next)=>{
-    try{
-       if(req.user.role!=="Admin")
-    }catch(e){
-        console.log("Access Denied. Only for Admin.",e)
+   try{
+    if(req.user.role!=="Admin"){
+        return res.json({
+            success:false,
+            message:"Access Denied. Admin Only."
+        })
     }
+    next();
+   }catch(e){
+    return res.status(500).json({
+        success:false,
+        message:"User invalid!"
+    })
+   }
 
 }
+
+exports.isStudent=async(req,res,next)=>{
+    try{
+     if(req.user.role!=="Student"){
+         return res.json({
+             success:false,
+             message:"Access Denied. Student Only."
+         })
+     }
+     next();
+    }catch(e){
+     return res.status(500).json({
+         success:false,
+         message:"User invalid!"
+     })
+    }
+ 
+ }
+
+
+ exports.isInstructor=async(req,res,next)=>{
+    try{
+     if(req.user.role!=="Instructor"){
+         return res.json({
+             success:false,
+             message:"Access Denied. Instructor Only."
+         })
+     }
+     next();
+    }catch(e){
+     return res.status(500).json({
+         success:false,
+         message:"User invalid!"
+     })
+    }
+ 
+ }
